@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import useMahasiswaModule from "./lib/mahasiswa_service";
+import useMahasiswaModule from "@/app/admin/data-akademik/lib/mahasiswa_service";
 import MahasiswaTable from "@/app/admin/data-akademik/components/TabelMahasiswa";
 import Pagination from "@/components/Pagination";
-import ShimmerMahasiswa from "./components/Shimmer";
+import ShimmerMahasiswa from "@/app/admin/data-akademik/components/Shimmer";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import Button from "@/components/Button";
 import { Drawer } from "@/components/Drawer";
 import useDisclosure from "@/hook/useDisclosure";
-import Filter from "./module/filter";
+import Filter from "@/app/admin/data-akademik/module/filter";
 
 const DataAkademik = () => {
   const { useMahasiswaList, useDeleteMahasiswa } = useMahasiswaModule();
@@ -28,10 +28,11 @@ const DataAkademik = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const router = useRouter();
+
   if (isLoading || isFetching) {
     return <ShimmerMahasiswa />;
   }
-  const router = useRouter();
 
   return (
     <>

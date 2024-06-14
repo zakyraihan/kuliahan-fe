@@ -118,7 +118,7 @@ const Login = () => {
                     isDisabled={isLoading}
                   />
                   <p className="text-center mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
-                    Don't have an account?{" "}
+                    Don&apos;t have an account?{" "}
                     <a
                       href="/auth/register"
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"

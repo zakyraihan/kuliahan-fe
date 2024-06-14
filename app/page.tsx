@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header Section */}
-      <header className="dark:bg-abu bg-blue-800 text-white p-6">
+      <div className="dark:bg-abu bg-blue-800 text-white p-6">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-3xl font-bold">Kuliah Hebat</h1>
           <nav>
@@ -19,7 +19,7 @@ export default function Home() {
             </a>
           </nav>
         </div>
-      </header>
+      </div>
 
       {/* Hero Section */}
       <section className="dark:bg-black bg-blue-800 text-white text-center py-20">

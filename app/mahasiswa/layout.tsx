@@ -22,11 +22,10 @@ interface MenuItem {
   icon: React.ComponentType<any>;
 }
 
-export default function mahasiswaLayout({ children }: { children: ReactNode }) {
+export default function MahasiswaLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathName = usePathname();
   const { useTugasList } = useTugasModule();
-  // const { data: ListTugasResponse } = useTugasList();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { useUserList } = useAuthModule();
   const { data, isFetching, isLoading } = useUserList();
@@ -61,21 +60,15 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
         {/* Sidebar */}
         <div
           className={clsx(
-            "fixed inset-y-0 left-0 z-30 w-64 transition-transform transform dark:bg-[#212121]  bg-[#1db954] text-white md:relative md:translate-x-0 md:flex md:flex-col md:justify-between py-10",
+            "fixed inset-y-0 left-0 z-30 w-64 transition-transform transform dark:bg-[#212121] bg-[#1db954] text-white md:relative md:translate-x-0 md:flex md:flex-col md:justify-between py-10",
             {
               "-translate-x-full": !isSidebarOpen,
               "translate-x-0": isSidebarOpen,
             }
           )}
         >
-          <div className=" flex flex-col gap-10">
-            <div className="flex flex-row items-center ">
-              {/* <Image
-                src={"/image/images-removebg-preview.png"}
-                alt=""
-                width={80}
-                height={80}
-              /> */}
+          <div className="flex flex-col gap-10">
+            <div className="flex flex-row items-center">
               <h1 className="text-xl font-semibold px-10">
                 Kuliah<span className="text-green-500">Hebat</span>
               </h1>
@@ -102,43 +95,6 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
                   <span className="flex-1">{menu.label}</span>
                 </button>
               ))}
-              {/* You can open the modal using document.getElementById('ID').showModal() method */}
-              {/* <button
-                className="btn flex"
-                // onClick={() =>
-                //   document.getElementById("my_modal_4")?.showModal()
-                // }
-              >
-                <Bell />
-                Notifications
-              </button> */}
-              <dialog id="my_modal_4" className="modal ">
-                <div className="modal-box w-11/12 max-w-5xl h-96">
-                  <h3 className="font-bold text-lg">Notification!</h3>
-                  <div className="flex items-center p-4  shadow-md rounded-lg ">
-                    <Image
-                      src={"/image/avatar.png"}
-                      alt={""}
-                      width={50}
-                      height={50}
-                      className="rounded-full mr-4"
-                    />
-
-                    <div className="flex flex-col">
-                      <span className="text-lg font-semibold">{""}</span>
-                      <span className="text-gray-400">
-                        jangan lupa ngumpulin tugas ya
-                      </span>
-                    </div>
-                  </div>
-                  <div className="modal-action">
-                    <form method="dialog">
-                      {/* if there is a button, it will close the modal */}
-                      <button className="btn">Close</button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
             </div>
           </div>
         </div>

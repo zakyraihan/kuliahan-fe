@@ -50,7 +50,10 @@ const Mahasiswa = () => {
           </Heading>
           <div className="flex items-center gap-2">
             Halo {session?.user?.name}
-            <Avatar onClick={() => router.push('/mahasiswa/profile')} className="cursor-pointer">
+            <Avatar
+              onClick={() => router.push("/mahasiswa/profile")}
+              className="cursor-pointer"
+            >
               <AvatarBadge
                 borderColor="papayawhip"
                 bg="green.500"
@@ -73,8 +76,8 @@ const Mahasiswa = () => {
               atau menutup sesi diskusi.
             </Text>
             <Text fontSize="md" color="gray.500">
-              "E-Learning bukan hanya tentang teknologi, tapi tentang memudahkan
-              akses pendidikan bagi semua orang."
+              &quot;E-Learning bukan hanya tentang teknologi, tapi tentang
+              memudahkan akses pendidikan bagi semua orang.&quot;
             </Text>
           </Stack>
         </Center>

@@ -8,6 +8,7 @@ import useDiskusiModule from "./service";
 import Button from "../Button";
 import { formatDateTime } from "@/utils/date.utils";
 import { EllipsisVertical } from "lucide-react";
+import Image from "next/image"; // Import next/image
 
 const createDiskusiChema = yup.object().shape({
   komentar: yup.string().nullable().default("").required("Wajib isi"),
@@ -65,9 +66,12 @@ const Diskusi = ({ onClose }: any) => {
             <div key={index} className="chat chat-start">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
-                  <img
+                  <Image
                     alt="Tailwind CSS chat bubble component"
                     src={"/image/avatar.png"}
+                    width={40}
+                    height={40}
+                    className="rounded-full"
                   />
                 </div>
               </div>
