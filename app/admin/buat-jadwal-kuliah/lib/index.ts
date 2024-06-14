@@ -1,4 +1,8 @@
-import { JadwalCreatePayload, ListJadwalResponse } from "./interfaces";
+import {
+  JadwalCreatePayload,
+  ListJadwalResponse,
+  UpdateJadwal,
+} from "./interfaces";
 import useAxiosAuth from "@/hook/useAxosAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
@@ -98,7 +102,27 @@ const useJadwalModule = () => {
     return { mutate, isLoading };
   };
 
-  return { useJadwalList, useCreateJadwal, useDeleteJadwal };
+  const useUpdateJadwal = (id: string) => {
+    const { mutate, isLoading } = useMutation(
+      (payload: UpdateJadwal) => {
+        return axiosAuthClient.put(`/jadwal-kuliah/update/${id}`, payload);
+      },
+      {
+        onSuccess: (response) => {
+          toastSuccess(response.data.message);
+          queryClient.invalidateQueries(["/jadwal/detail"]);
+          router.back();
+        },
+
+        onError: (error) => {
+          alert("error");
+        },
+      }
+    );
+    return { mutate, isLoading };
+  };
+
+  return { useJadwalList, useCreateJadwal, useDeleteJadwal, useUpdateJadwal };
 };
 
 export default useJadwalModule;

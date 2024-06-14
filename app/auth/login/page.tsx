@@ -123,7 +123,16 @@ const Login = () => {
                       href="/auth/register"
                       className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                     >
-                      Register here
+                      Register Disini
+                    </a>
+                  </p>
+                  <p className="text-center mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
+                    Lupa Password?{" "}
+                    <a
+                      href="/auth/lupa-password"
+                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    >
+                      Disini
                     </a>
                   </p>
                 </section>

@@ -12,31 +12,9 @@ const ChartGoogle: React.FC<any> = ({ chartType, data }) => {
   }, []);
 
   const chartOptions = {
-    backgroundColor: isDarkMode ? "#212121" : "",
-    legend: {
-      textStyle: { color: isDarkMode ? "white" : "black", fontSize: 12 },
-    },
-    hAxis: {
-      textStyle: {
-        color: isDarkMode ? "white" : "black",
-        fontSize: 12,
-        width: "100%",
-      },
-      slantedText: true,
-      maxTextLines: 3,
-    },
-    vAxis: {
-      textStyle: {
-        color: isDarkMode ? "white" : "black",
-        fontSize: 12,
-        width: "100%",
-      },
-      slantedText: true,
-      maxTextLines: 3,
-    },
-    titleTextStyle: {
-      color: isDarkMode ? "white" : "black",
-      fontSize: 16,
+    chart: {
+      title: "Company Performance",
+      subtitle: "Sales, Expenses, and Profit: 2014-2017",
     },
   };
 

@@ -16,8 +16,18 @@ export interface JurusanFilterList extends Partial<Jurusan> {
   nama_jurusan: string;
 }
 
+export interface CreateJurusanDto
+  extends Omit<
+    Jurusan,
+    "created_at" | "updated_at" | "id" | "peminat_jurusan"
+  > {}
+
 export interface JurusanCreatePayload extends Pick<Jurusan, "nama_jurusan"> {}
 
 export interface DetailJurusan extends Jurusan {}
 
-export interface UpdateJurusan extends Omit<Jurusan, "id" | "created_at"> {}
+export interface UpdateJurusan
+  extends Omit<
+    Jurusan,
+    "id" | "created_at" | "updated_at" | "peminat_jurusan"
+  > {}

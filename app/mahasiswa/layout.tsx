@@ -14,6 +14,7 @@ import {
 import Image from "next/image";
 import useAuthModule from "../auth/lib/auth_service";
 import { useSession } from "next-auth/react";
+import useTugasModule from "../admin/tugas/lib";
 
 interface MenuItem {
   label: string;
@@ -24,6 +25,8 @@ interface MenuItem {
 export default function mahasiswaLayout({ children }: { children: ReactNode }) {
   const router = useRouter();
   const pathName = usePathname();
+  const { useTugasList } = useTugasModule();
+  // const { data: ListTugasResponse } = useTugasList();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { useUserList } = useAuthModule();
   const { data, isFetching, isLoading } = useUserList();
@@ -41,14 +44,9 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
       icon: CalendarCheck,
     },
     {
-      label: "E-learning",
-      route: "e-learning",
+      label: "Tugas",
+      route: "tugas",
       icon: BookOpenText,
-    },
-    {
-      label: "Akun Profil",
-      route: "profile",
-      icon: CircleUserRound,
     },
   ];
 
@@ -72,14 +70,14 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
         >
           <div className=" flex flex-col gap-10">
             <div className="flex flex-row items-center ">
-              <Image
+              {/* <Image
                 src={"/image/images-removebg-preview.png"}
                 alt=""
                 width={80}
                 height={80}
-              />
-              <h1 className="text-xl font-semibold">
-                Spo<span className="text-green-500">Versity</span>
+              /> */}
+              <h1 className="text-xl font-semibold px-10">
+                Kuliah<span className="text-green-500">Hebat</span>
               </h1>
             </div>
             <div className="space-y-5 p-2">
@@ -105,15 +103,15 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
                 </button>
               ))}
               {/* You can open the modal using document.getElementById('ID').showModal() method */}
-              <button
+              {/* <button
                 className="btn flex"
-                onClick={() =>
-                  document.getElementById("my_modal_4")?.showModal()
-                }
+                // onClick={() =>
+                //   document.getElementById("my_modal_4")?.showModal()
+                // }
               >
                 <Bell />
                 Notifications
-              </button>
+              </button> */}
               <dialog id="my_modal_4" className="modal ">
                 <div className="modal-box w-11/12 max-w-5xl h-96">
                   <h3 className="font-bold text-lg">Notification!</h3>
@@ -127,7 +125,7 @@ export default function mahasiswaLayout({ children }: { children: ReactNode }) {
                     />
 
                     <div className="flex flex-col">
-                      <span className="text-lg font-semibold">zaky raihan</span>
+                      <span className="text-lg font-semibold">{""}</span>
                       <span className="text-gray-400">
                         jangan lupa ngumpulin tugas ya
                       </span>

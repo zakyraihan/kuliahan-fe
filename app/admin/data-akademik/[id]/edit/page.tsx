@@ -12,9 +12,14 @@ import Button from "@/components/Button";
 import Image from "next/image";
 
 const EditMahasiswa = ({ params }: { params: { id: string } }) => {
-  const { useDetailMahasiswa } = useMahasiswaModule();
+  const { useDetailMahasiswa, useUpdateMahasiswa } = useMahasiswaModule();
   const { data, isFetching, isLoading } = useDetailMahasiswa(params.id);
+  const { mutate } = useUpdateMahasiswa(params.id);
   const { optionJurusan, optionRuangan } = useOption();
+
+  const onSubmit = async (values: MahasiswaUpdatePayload) => {
+    mutate(values);
+  };
 
   const formik = useFormik<MahasiswaUpdatePayload>({
     initialValues: {
@@ -31,9 +36,7 @@ const EditMahasiswa = ({ params }: { params: { id: string } }) => {
     },
     validationSchema: createMahasiswaSchema,
     enableReinitialize: true,
-    onSubmit: (values) => {
-      // Submit logic
-    },
+    onSubmit: onSubmit,
   });
 
   const {

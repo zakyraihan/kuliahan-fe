@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import {
+  CreateJurusanDto,
   DetailJurusan,
   ListJurusanResponse,
   UpdateJurusan,
@@ -75,7 +76,30 @@ const useJurusanModule = () => {
     return { mutate, isLoading };
   };
 
-  return { useJurusanList, useDetailJurusan, useUpdateJurusan };
+  const useCreateJurusan = () => {
+    const { isLoading, mutate } = useMutation(
+      (payload: CreateJurusanDto) => {
+        return axiosAuthClient.post("/jurusan/create", payload);
+      },
+      {
+        onSuccess: (response) => {
+          toastSuccess(`${response.data.message}`);
+        },
+        onError: (gagal) => {
+          console.log("error", gagal);
+          toastError();
+        },
+      }
+    );
+    return { mutate, isLoading };
+  };
+
+  return {
+    useJurusanList,
+    useDetailJurusan,
+    useUpdateJurusan,
+    useCreateJurusan,
+  };
 };
 
 export default useJurusanModule;

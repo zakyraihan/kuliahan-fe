@@ -42,8 +42,8 @@ export interface MahasiswaListResponse extends BaseResponsePagination {
 }
 
 export interface MahasiswaFilterList extends Partial<Mahasiswa> {
-  nama_mahasiswa?: string;
-  nim?: number;
+  nama_mahasiswa: string;
+  nim: number;
   page: number;
   pageSize: number;
 }

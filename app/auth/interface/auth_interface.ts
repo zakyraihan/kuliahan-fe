@@ -19,7 +19,11 @@ export interface LoginPayload
 export interface LoginResponse extends BaseResponseSucces {
   data: User;
 }
-
+export interface ResetPassword {
+  new_password: string;
+}
+export interface LupaPasswordPayload extends Pick<User, "email"> {}
+export interface LupaPasswordResponse extends BaseResponseSucces {}
 export interface ProfileResponse extends BaseResponseSucces {
   data: User[];
 }

@@ -6,6 +6,7 @@ import {
   MahasiswaCreateArrayPayload,
   MahasiswaFilterList,
   MahasiswaListResponse,
+  MahasiswaUpdatePayload,
 } from "../interface/mahasiswa_interface";
 import { useSession } from "next-auth/react";
 import { usePagination } from "@/hook/usePagination";
@@ -44,11 +45,9 @@ const useMahasiswaModule = () => {
       handlePageSize,
       handlePage,
       filterParams,
-      filterKey,
-      handleKeyFilter,
-    } = usePagination(defaultParams, defaultParams);
+    } = usePagination(defaultParams);
     const { data, isFetching, isLoading } = useQuery(
-      ["/mahasiswa/list", filterParams, filterKey],
+      ["/mahasiswa/list", filterParams],
       () => getMahasiswaList(filterParams),
       {
         select: (response) => response,
@@ -155,11 +154,37 @@ const useMahasiswaModule = () => {
     return { mutate, isLoading };
   };
 
+  const useUpdateMahasiswa = (id: string) => {
+    const { mutate, isLoading } = useMutation(
+      (payload: MahasiswaUpdatePayload) => {
+        return axiosAuthClient.put(`/mahasiswa/update/${id}`, payload);
+      },
+      {
+        onSuccess: (response) => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: response.data.message,
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          queryClient.invalidateQueries(["/mahasiswa/detail"]);
+        },
+
+        onError: (error) => {
+          alert("ok");
+        },
+      }
+    );
+    return { mutate, isLoading };
+  };
+
   return {
     useMahasiswaList,
     useCreateBulkMahasiswa,
     useDetailMahasiswa,
     useDeleteMahasiswa,
+    useUpdateMahasiswa,
   };
 };
 

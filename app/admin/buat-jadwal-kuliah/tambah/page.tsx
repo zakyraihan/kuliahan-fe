@@ -9,6 +9,7 @@ import InputText from "@/components/InputText";
 import Button from "@/components/Button"; // Assuming you have a Button component
 import useOption from "@/hook/useOption";
 import Select from "@/components/Select";
+import { useRouter } from "next/navigation";
 
 const createJadwalSchema = yup.object().shape({
   mata_kuliah: yup.string().nullable().default("").required("Wajib isi"),
@@ -24,6 +25,7 @@ const BuatJadwal = () => {
   const { useCreateJadwal } = useJadwalModule();
   const { mutate, isLoading } = useCreateJadwal();
   const { optionJurusan, optionRuangan, optionUser } = useOption();
+  const router = useRouter();
   console.log("user", optionUser);
   const formik = useFormik<JadwalCreatePayload>({
     initialValues: {
@@ -149,6 +151,7 @@ const BuatJadwal = () => {
                   width="1/2"
                   type="button"
                   title="Cancel"
+                  onClick={() => router.back()}
                   colorSchema="red"
                 />
               </div>

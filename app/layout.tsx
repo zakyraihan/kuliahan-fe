@@ -5,6 +5,7 @@ import ReactQuery from "@/components/ReactQuery";
 import { Session } from "next-auth";
 import { ReactNode } from "react";
 import NextAuthProvider from "@/components/NextAuthProvider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 interface NextAuthProps {
   children: ReactNode;

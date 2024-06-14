@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import {
   LoginPayload,
   LoginResponse,
+  LupaPasswordPayload,
+  LupaPasswordResponse,
   ProfileResponse,
   RegisterPayload,
   RegisterResponse,
@@ -124,7 +126,79 @@ const useAuthModule = () => {
     };
   };
 
-  return { useRegister, useLogin, useProfile, useUserList };
+  const resetPassword = async (
+    payload: LupaPasswordPayload,
+    id: string,
+    token: string
+  ): Promise<LupaPasswordResponse> => {
+    try {
+      const response = await axiosClient.post(
+        `/auth/reset-password/${id}/${token}`,
+        payload
+      );
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  const useResetPassword = (id: string, token: string) => {
+    const { mutate, isLoading, isError, error } = useMutation({
+      mutationFn: (payload: LupaPasswordPayload) =>
+        resetPassword(payload, id, token),
+      onSuccess: (response) => {
+        toastSuccess(response.message);
+        router.push("/auth/login");
+      },
+      onError: (error: any) => {
+        if (error.response && error.response.status) {
+          toastWarning(error.response.data.message);
+        }
+      },
+    });
+
+    return { mutate, isLoading, isError, error };
+  };
+
+  const lupaPassword = async (
+    payload: LupaPasswordPayload
+  ): Promise<LupaPasswordResponse> => {
+    try {
+      const response = await axiosClient.post("/auth/lupa-password", payload);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  // Hook for using password recovery functionality
+  const useLupaPw = () => {
+    const { mutate, isLoading, isError, error } = useMutation({
+      mutationFn: (payload: LupaPasswordPayload) => lupaPassword(payload),
+      onSuccess: (response) => {
+        toastSuccess(response.message);
+        // router.push("/auth/login");
+      },
+      onError: (error: any) => {
+        if (error.response && error.response.status) {
+          toastWarning(error.response.data.message);
+        }
+      },
+    });
+
+    return { mutate, isLoading, isError, error };
+  };
+
+  return {
+    useRegister,
+    useLogin,
+    useProfile,
+    useUserList,
+    useResetPassword,
+    useLupaPw,
+  };
 };
 
 export default useAuthModule;

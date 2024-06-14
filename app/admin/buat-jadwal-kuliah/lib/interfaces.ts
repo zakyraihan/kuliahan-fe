@@ -31,3 +31,9 @@ export interface JadwalCreatePayload
 export interface ListJadwalResponse extends BaseResponsePagination {
   data: Jadwal[];
 }
+
+export interface UpdateJadwal
+  extends Omit<
+    Jadwal,
+    "id" | "jurusan" | "ruang_kuliah" | "dosen" | "updated_by"
+  > {}

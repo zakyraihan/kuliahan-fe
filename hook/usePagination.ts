@@ -5,21 +5,12 @@ interface PaginationParams {
   pageSize: number;
 }
 
-export const usePagination = <T extends PaginationParams>(
-  defaultParams: T,
-  defaultKey: T
-) => {
+export const usePagination = <T extends PaginationParams>(defaultParams: T) => {
   let [params, setParams] = useState<T>(defaultParams);
-  let [keyword, setKeyword] = useState<T>(defaultKey);
   let [filterParams, setFilterParams] = useState<T>(defaultParams);
-  let [filterKey, setfilterKey] = useState<T>(defaultKey);
 
   const handleFilter = () => {
     setFilterParams({ ...params });
-  };
-
-  const handleKeyFilter = () => {
-    setfilterKey({ ...keyword });
   };
 
   const handleClear = () => {
@@ -41,9 +32,7 @@ export const usePagination = <T extends PaginationParams>(
     params,
     setParams,
     handleFilter,
-    handleKeyFilter,
     handleClear,
-    filterKey,
     handlePageSize,
     handlePage,
     filterParams,

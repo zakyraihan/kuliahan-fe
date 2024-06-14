@@ -41,19 +41,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       icon: LayoutDashboard,
     },
     {
-      label: "Profil Sekolah",
-      route: "profile-sekolah",
-      icon: University,
-    },
-    {
       label: "Data Akademik",
       route: "data-akademik",
       icon: BadgeDollarSign,
-    },
-    {
-      label: "Tahun Pelajaran",
-      route: "tahun-pelajaran",
-      icon: Settings,
     },
     {
       label: "List Jurusan",
@@ -68,6 +58,11 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     {
       label: "Buat Jadwal",
       route: "buat-jadwal-kuliah",
+      icon: School,
+    },
+    {
+      label: "Tugas",
+      route: "tugas",
       icon: School,
     },
     {
@@ -96,14 +91,14 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       >
         <div className=" flex flex-col gap-10">
           <div className="flex flex-row items-center ">
-            <Image
+            {/* <Image
               src={"/image/images-removebg-preview.png"}
               alt=""
               width={100}
               height={100}
-            />
-            <h1 className="text-xl font-semibold">
-              Spo<span className="text-green-500">Versity</span>
+            /> */}
+            <h1 className="text-xl font-semibold px-10">
+              Kuliah<span className="text-green-500">Hebat</span>
             </h1>
           </div>
           <div className="space-y-5 p-2">
