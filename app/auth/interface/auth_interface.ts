@@ -11,7 +11,7 @@ interface User {
 
 export interface RegisterResponse extends BaseResponseSucces {}
 
-export interface RegisterPayload extends Omit<User, "id"> {}
+export interface RegisterPayload extends Omit<User, "id" | "created_at"> {}
 
 export interface LoginPayload
   extends Pick<User, "nama" | "email" | "password"> {}
