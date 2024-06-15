@@ -3,25 +3,6 @@ import Image from "next/image";
 const Page = () => {
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Header Section */}
-      <section className="dark:bg-abu bg-blue-800 text-white p-6">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">Kuliah Hebat</h1>
-          <div>
-            <a href="#about" className="ml-6">
-              Tentang
-            </a>
-            <a href="#courses" className="ml-6">
-              Kursus
-            </a>
-            <a href="#contact" className="ml-6">
-              Kontak
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Hero Section */}
       <section className="dark:bg-black bg-blue-800 text-white text-center py-20">
         <h2 className="text-5xl font-bold mb-4">
           Selamat Datang di Kuliah Hebat
@@ -35,7 +16,6 @@ const Page = () => {
         </a>
       </section>
 
-      {/* About Section */}
       <section id="about" className="py-20 dark:bg-abu bg-white">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Tentang Kami</h2>
@@ -55,7 +35,6 @@ const Page = () => {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="dark:bg-black bg-blue-800 text-white py-6">
         <div className="container mx-auto text-center">
           <p>&copy; 2024 Kuliah Hebat. Semua Hak Dilindungi.</p>
