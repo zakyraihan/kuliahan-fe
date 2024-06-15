@@ -7,7 +7,7 @@ const Page = () => {
       <section className="dark:bg-abu bg-blue-800 text-white p-6">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-3xl font-bold">Kuliah Hebat</h1>
-          <nav>
+          <div>
             <a href="#about" className="ml-6">
               Tentang
             </a>
@@ -17,7 +17,7 @@ const Page = () => {
             <a href="#contact" className="ml-6">
               Kontak
             </a>
-          </nav>
+          </div>
         </div>
       </section>
 
