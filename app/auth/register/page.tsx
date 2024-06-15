@@ -3,7 +3,6 @@ import { useFormik, Form, FormikProvider, getIn } from "formik";
 import Link from "next/link";
 import * as yup from "yup";
 import { RegisterPayload } from "../interface/auth_interface";
-
 import { useState } from "react";
 import InputText from "@/components/InputText";
 import Label from "@/components/Label";
@@ -13,7 +12,7 @@ import Select from "@/components/Select";
 import { ToastContainer } from "react-toastify";
 import Image from "next/image";
 
-const option = [
+const options = [
   {
     value: "dosen",
     label: "dosen",
@@ -24,7 +23,7 @@ const option = [
   },
 ];
 
- const registerSchema = yup.object().shape({
+const registerSchema = yup.object().shape({
   nama: yup.string().nullable().default("").required("Wajib isi"),
   email: yup
     .string()
@@ -48,6 +47,7 @@ const Register = () => {
   const { mutate, isLoading, isError, error } = useRegister();
   const formik = useFormik<RegisterPayload>({
     initialValues: registerSchema.getDefault(),
+    validationSchema: registerSchema,
     enableReinitialize: true,
     onSubmit: (payload: any) => {
       mutate(payload);
@@ -59,8 +59,6 @@ const Register = () => {
     handleBlur,
     values,
     errors,
-    resetForm,
-    setValues,
     setFieldValue,
   } = formik;
   const errorMessages = isError ? error.response?.data?.message || [] : [];
@@ -72,22 +70,17 @@ const Register = () => {
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900 md:flex md:flex-row flex-col">
-      <div className="bg-blue-400 md:h-screen md:w-[50vw] w-fullh-screen h-[50vh]"></div>
+      <div className="bg-blue-400 md:h-screen md:w-[50vw] w-full h-[50vh]"></div>
       <div className="flex flex-col items-center md:w-[50%] w-full justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <a
-          href="#"
-          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-        >
+        <div className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <Image
-            src={
-              "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-            }
+            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
             alt="logo"
             width={50}
             height={50}
           />
           <p>Flowbite</p>
-        </a>
+        </div>
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -128,7 +121,6 @@ const Register = () => {
                 </section>
                 <section>
                   <Label htmlFor="password" title="Password" />
-
                   <InputText
                     value={values.password}
                     placeholder="********"
@@ -144,21 +136,19 @@ const Register = () => {
                     messageError={isPasswordActive ? passwordError : null}
                   />
                 </section>
-
                 <section>
-                  <Label htmlFor="role" title="role" />
+                  <Label htmlFor="role" title="Role" />
                   <Select
                     value={values.role}
                     id="role"
                     name="role"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    options={option}
+                    options={options}
                     isError={getIn(errors, "role")}
                     messageError={getIn(errors, "role")}
                   />
                 </section>
-
                 <section>
                   <Button
                     height="lg"
@@ -173,12 +163,9 @@ const Register = () => {
                   />
                   <p className="text-center mt-3 text-sm font-light text-gray-500 dark:text-gray-400">
                     Already have an account?{" "}
-                    <a
-                      href="/auth/login"
-                      className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                    >
+                    <Link href="/auth/login" className="font-medium text-primary-600 hover:underline dark:text-primary-500">
                       Login here
-                    </a>
+                    </Link>
                   </p>
                 </section>
               </Form>

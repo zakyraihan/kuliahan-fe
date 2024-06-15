@@ -46,13 +46,9 @@ const Login = () => {
     <section className="bg-gray-50 dark:bg-gray-900 md:flex md:flex-row flex-col">
       <div className="bg-blue-400 md:h-screen md:w-[50vw] w-full h-[50vh]"></div>
       <div className="flex flex-col items-center md:w-[50%] w-full justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div
-          className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-        >
+        <div className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
           <Image
-            src={
-              "https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
-            }
+            src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
             alt="logo"
             width={50}
             height={50}
@@ -67,7 +63,7 @@ const Login = () => {
             <FormikProvider value={formik}>
               <Form className="space-y-5" onSubmit={handleSubmit}>
                 <section>
-                  <Label htmlFor="nama" title="nama" />
+                  <Label htmlFor="nama" title="Nama" />
                   <InputText
                     value={values.nama}
                     placeholder="Nama"
@@ -83,7 +79,7 @@ const Login = () => {
                   <Label htmlFor="email" title="Email" />
                   <InputText
                     value={values.email}
-                    placeholder="exampel@email.com"
+                    placeholder="example@email.com"
                     id="email"
                     name="email"
                     onChange={handleChange}
@@ -94,7 +90,6 @@ const Login = () => {
                 </section>
                 <section>
                   <Label htmlFor="password" title="Password" />
-
                   <InputText
                     value={values.password}
                     placeholder="**********"
@@ -107,7 +102,6 @@ const Login = () => {
                     messageError={getIn(errors, "password")}
                   />
                 </section>
-
                 <section>
                   <Button
                     height="lg"
